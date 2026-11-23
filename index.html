@@ -44,7 +44,7 @@ h3{font-size:22px;font-weight:800}
 /* scalloped pie-crust top edges */
 .scallop::before{content:"";position:absolute;left:0;right:0;top:-15px;height:16px;background:radial-gradient(circle at 50% 100%,var(--sc) 12px,transparent 12.5px) 0 0/26px 16px repeat-x}
 /* polaroid + tape */
-.polaroid{background:#fff;padding:10px 10px 14px;border-radius:4px;box-shadow:0 14px 30px -12px #2f1b1466,0 2px 4px #2f1b141a;position:relative;transition:transform .25s}
+.polaroid{margin:0;background:#fff;padding:10px 10px 14px;border-radius:4px;box-shadow:0 14px 30px -12px #2f1b1466,0 2px 4px #2f1b141a;position:relative;transition:transform .25s}
 .polaroid img{border-radius:2px;width:100%;object-fit:cover}
 .polaroid figcaption,.polaroid .cap{font-family:"Patrick Hand",cursive;font-size:19px;color:#3a2a22;text-align:center;margin-top:8px;line-height:1.2}
 .tape::after{content:"";position:absolute;top:-12px;left:50%;width:84px;height:26px;transform:translateX(-50%) rotate(-4deg);background:#f4d96bb3;box-shadow:0 1px 2px #0002}
@@ -129,6 +129,28 @@ nav ul a:hover{opacity:1;text-decoration:underline wavy var(--butter);text-under
 .cols small{display:block;font-family:"Patrick Hand",cursive;font-size:17px;color:var(--cherry);margin-top:14px;transform:rotate(-2deg)}
 .menu .note{font-size:14px;color:var(--soft);margin-top:16px}
 
+/* gallery */
+.counter{background:var(--choc2);color:#fbeee6;--sc:var(--choc2)}
+.counter .lede{color:#e9cfc2}.counter .kicker{color:var(--butter)}
+.counter .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+.counter .note{font-size:14px;color:#cdb3a5;margin-top:30px}
+.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px 18px}
+.shot{all:unset;cursor:zoom-in;display:block}
+.shot:focus-visible{outline:3px solid var(--sky);outline-offset:4px;border-radius:6px}
+.shot .polaroid{padding:8px 8px 10px;transition:transform .25s}
+.shot img{aspect-ratio:1}
+.shot figcaption{font-size:16px}
+.shot:nth-child(4n+1) .polaroid{transform:rotate(-3deg)}.shot:nth-child(4n+2) .polaroid{transform:rotate(2deg) translateY(8px)}.shot:nth-child(4n+3) .polaroid{transform:rotate(-1deg)}.shot:nth-child(4n) .polaroid{transform:rotate(3deg) translateY(4px)}
+.shot:nth-child(3n+1) .polaroid{background:#fff8ec}
+.shot:hover .polaroid{transform:rotate(0) scale(1.06);z-index:2;position:relative}
+.shot:nth-child(1),.shot:nth-child(8){grid-column:span 2;grid-row:span 2}
+.shot:nth-child(1) figcaption,.shot:nth-child(8) figcaption{font-size:21px}
+dialog#lightbox{border:0;padding:0;background:none;max-width:min(92vw,720px);width:100%;overflow:visible}
+dialog#lightbox::backdrop{background:#1b0f0bd9}
+#lightbox .polaroid{transform:rotate(-1deg)}
+#lightbox img{width:100%;max-height:72vh;object-fit:contain;background:#fff}
+#lightbox figcaption{font-size:24px}
+.lbnav{display:flex;justify-content:center;gap:12px;margin-top:18px}
 /* orders */
 .orders{background:var(--peach2);color:#2b1a13;--sc:var(--peach2)}
 .orders .lede{color:#5a3a2e}
@@ -192,8 +214,13 @@ blockquote cite{display:block;font:500 14px "Instrument Sans",sans-serif;font-st
 .hours td:last-child{text-align:right;white-space:nowrap}
 .hours tr.today td{font-weight:700}
 .hours tr.today td:first-child::after{content:" · today";font-family:"Patrick Hand",cursive;font-weight:400;font-size:19px;color:var(--cherry)}
-.map{position:relative;border-radius:22px;overflow:hidden;background:#3a231b;aspect-ratio:600/440;border:4px solid var(--choc2);box-shadow:8px 8px 0 var(--choc2)}
-.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map{position:relative;border-radius:22px;overflow:hidden;background:#e8e4dc;aspect-ratio:4/3;border:4px solid var(--choc2);box-shadow:8px 8px 0 var(--choc2);transform:rotate(1deg)}
+.map iframe,.map .mapimg,.map .mapimg img{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.map .mapimg img{object-fit:cover}
+.map .mapimg:hover img{filter:saturate(1.15)}
+.openmaps{position:absolute;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:8px;background:var(--cherry);color:#fff;font-weight:600;padding:10px 16px;border-radius:999px;box-shadow:0 4px 0 #8f1f26;text-decoration:none}
+.openmaps svg{width:20px;height:20px;stroke:#fff}
+.maplinks{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;font-size:15px}
 .contact{display:grid;gap:10px;margin-top:22px}
 .contact a{font-weight:600}
 .copy{font-size:14px;padding:0 14px;min-height:38px;box-shadow:0 3px 0 var(--choc2)}
@@ -203,7 +230,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 footer .mark{font-size:40px;color:#fff}
 footer .hand{font-size:20px;color:var(--butter)}
 
-@media (max-width:980px){.pierow{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 24px}.evgrid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:980px){.board{grid-template-columns:repeat(4,minmax(0,1fr))}.pierow{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 24px}.evgrid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:760px){
   nav ul{display:none}
   .hero .wrap,.orders .wrap,.story .wrap,.visit .wrap{grid-template-columns:minmax(0,1fr)}
@@ -215,7 +242,7 @@ footer .hand{font-size:20px;color:var(--butter)}
   .price-list{grid-template-columns:minmax(0,1fr)}
   .pair{min-height:0;aspect-ratio:1/0.95}
 }
-@media (max-width:520px){.menu .shots{grid-template-columns:minmax(0,1fr)}.f2{grid-template-columns:minmax(0,1fr)}.fact .ic{width:40px;height:40px}}
+@media (max-width:520px){.board{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}.shot:nth-child(1),.shot:nth-child(8){grid-column:span 2;grid-row:auto}.menu .shots{grid-template-columns:minmax(0,1fr)}.f2{grid-template-columns:minmax(0,1fr)}.fact .ic{width:40px;height:40px}}
 @media (max-width:440px){.facts .wrap{grid-template-columns:minmax(0,1fr)}.pierow{grid-template-columns:minmax(0,1fr)}.pie img{aspect-ratio:4/3}}
 @media (prefers-reduced-motion:no-preference){
   .badge .spin{animation:spin 18s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
@@ -250,6 +277,7 @@ footer .hand{font-size:20px;color:var(--butter)}
     <ul>
       <li><a href="#pies">Pies</a></li>
       <li><a href="#menu">Menu</a></li>
+      <li><a href="#counter">Gallery</a></li>
       <li><a href="#order">Whole pies</a></li>
       <li><a href="#happenings">Happenings</a></li>
       <li><a href="#visit">Visit</a></li>
@@ -358,6 +386,45 @@ footer .hand{font-size:20px;color:var(--butter)}
   </div>
 </section>
 
+<section class="band counter scallop" id="counter">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="kicker"><svg><use href="#spk"/></svg> straight from the counter</div>
+        <h2>A peek at the counter</h2>
+        <p class="lede">Buns, biscuits, focaccia, crumble and plenty of pie. Here's what it looks like on a good day (they're all good days). Tap a photo to see it bigger.</p>
+      </div>
+      <a class="btn" href="https://www.instagram.com/thelearigbakes">More on Instagram</a>
+    </div>
+    <div class="board">
+      <button class="shot" type="button" data-i="0"><figure class="polaroid"><img src="img/g-counter.jpg" alt="the counter, fully loaded at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>the counter, fully loaded</figcaption></figure></button>
+      <button class="shot" type="button" data-i="1"><figure class="polaroid"><img src="img/g-cinnamon-bun.jpg" alt="sticky cinnamon swirl at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>sticky cinnamon swirl</figcaption></figure></button>
+      <button class="shot" type="button" data-i="2"><figure class="polaroid"><img src="img/g-focaccia-checker.jpg" alt="focaccia sandwich, wrapped to go at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>focaccia sandwich, wrapped to go</figcaption></figure></button>
+      <button class="shot" type="button" data-i="3"><figure class="polaroid"><img src="img/g-pie-slices.jpg" alt="pie by the slice at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>pie by the slice</figcaption></figure></button>
+      <button class="shot" type="button" data-i="4"><figure class="polaroid"><img src="img/g-latte.jpg" alt="latte, with love at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>latte, with love</figcaption></figure></button>
+      <button class="shot" type="button" data-i="5"><figure class="polaroid"><img src="img/g-biscuits.jpg" alt="American biscuits at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>American biscuits</figcaption></figure></button>
+      <button class="shot" type="button" data-i="6"><figure class="polaroid"><img src="img/g-crumble.jpg" alt="crumble pie, still warm at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>crumble pie, still warm</figcaption></figure></button>
+      <button class="shot" type="button" data-i="7"><figure class="polaroid"><img src="img/g-buns-tray.jpg" alt="a tray of buns at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>a tray of buns</figcaption></figure></button>
+      <button class="shot" type="button" data-i="8"><figure class="polaroid"><img src="img/g-biscuits-gravy.jpg" alt="biscuits and gravy at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>biscuits &amp; gravy</figcaption></figure></button>
+      <button class="shot" type="button" data-i="9"><figure class="polaroid"><img src="img/g-coconut-close.jpg" alt="coconut cream, up close at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>coconut cream, up close</figcaption></figure></button>
+      <button class="shot" type="button" data-i="10"><figure class="polaroid"><img src="img/g-focaccia-stack.jpg" alt="focaccia stack at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>focaccia stack</figcaption></figure></button>
+      <button class="shot" type="button" data-i="11"><figure class="polaroid"><img src="img/g-muffins.jpg" alt="crumble-top muffins at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>crumble-top muffins</figcaption></figure></button>
+      <button class="shot" type="button" data-i="12"><figure class="polaroid"><img src="img/g-cinnamon-card.jpg" alt="bun + loyalty card at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>bun + loyalty card</figcaption></figure></button>
+      <button class="shot" type="button" data-i="13"><figure class="polaroid"><img src="img/g-frosted-buns.jpg" alt="frosted buns at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>frosted buns</figcaption></figure></button>
+      <button class="shot" type="button" data-i="14"><figure class="polaroid"><img src="img/g-toastie.jpg" alt="a toasty melt at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>a toasty melt</figcaption></figure></button>
+      <button class="shot" type="button" data-i="15"><figure class="polaroid"><img src="img/g-crumble-latte.jpg" alt="crumble and a flat white at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>crumble &amp; a flat white</figcaption></figure></button>
+      <button class="shot" type="button" data-i="16"><figure class="polaroid"><img src="img/g-lattice.jpg" alt="lattice pie at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>lattice pie</figcaption></figure></button>
+      <button class="shot" type="button" data-i="17"><figure class="polaroid"><img src="img/g-focaccia-tray.jpg" alt="lunch is ready at the Lea Rig" loading="lazy" width="398" height="398"><figcaption>lunch is ready</figcaption></figure></button>
+    </div>
+    <p class="note">Photos from the Lea Rig and its guests on Instagram and Google.</p>
+  </div>
+</section>
+
+<dialog id="lightbox" aria-label="Photo viewer">
+  <figure class="polaroid"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <div class="lbnav"><button class="btn" type="button" id="lbPrev" aria-label="Previous photo">←</button><button class="btn fill" type="button" id="lbClose">Close</button><button class="btn" type="button" id="lbNext" aria-label="Next photo">→</button></div>
+</dialog>
+
 <section class="band orders scallop" id="order">
   <div class="wrap">
     <figure class="polaroid tape"><img src="img/pie-orders.jpg" alt="Hands rolling pie dough beside pumpkin, apple and cream pie slices with prices"><figcaption>rolled by hand, every one</figcaption></figure>
@@ -442,28 +509,19 @@ footer .hand{font-size:20px;color:var(--butter)}
     <div>
       <div class="kicker"><svg><use href="#pin"/></svg> pop in</div>
       <h2>Come say hello</h2>
-      <p style="font-size:18px;margin:14px 0 0">127 Easter Road, Edinburgh EH7 5PP<br>On the corner, a short walk from the top of Leith Walk.</p>
+      <p style="font-size:18px;margin:14px 0 0">127 Easter Road, Edinburgh EH7 5PP<br>On the corner of Brunswick Road, a short walk from the top of Leith Walk.</p>
       <table class="hours" aria-label="Opening hours"><tbody id="hours"></tbody></table>
       <div class="contact">
         <div class="row"><span>Email <a href="mailto:learigcafe@gmail.com">learigcafe@gmail.com</a></span><button class="btn copy" type="button" data-copy="learigcafe@gmail.com">Copy</button></div>
         <span>Instagram <a href="https://www.instagram.com/thelearigbakes">@thelearigbakes</a></span>
-        <div class="row" style="margin-top:10px"><a class="btn fill" href="https://www.google.com/maps/place/The+Lea+Rig+Caf%C3%A9+%26+Bakery/@55.9606817,-3.1714931,17z">Get directions</a></div>
+        <div class="row" style="margin-top:10px"><a class="btn fill" href="https://www.google.com/maps/dir/?api=1&amp;destination=55.9606817%2C-3.1714931">Get directions</a></div>
       </div>
     </div>
-    <div class="map" aria-label="Sketch map of the café's corner on Easter Road">
-      <svg viewBox="0 0 600 440" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <g fill="#4d3027"><rect x="20" y="20" width="200" height="400" rx="14"/><rect x="330" y="20" width="250" height="150" rx="14"/><rect x="330" y="258" width="250" height="162" rx="14"/></g>
-        <g fill="#5e3c30"><circle cx="80" cy="90" r="18"/><circle cx="150" cy="300" r="22"/><circle cx="500" cy="340" r="20"/><circle cx="110" cy="360" r="14"/></g>
-        <rect x="245" y="0" width="60" height="440" fill="#e8b49b"/>
-        <path d="M275 0V440" stroke="#fff8" stroke-width="3" stroke-dasharray="14 12"/>
-        <rect x="305" y="190" width="295" height="44" fill="#f3d3c2"/>
-        <g font-family="Instrument Sans,sans-serif" font-weight="600" fill="#46291f" font-size="15"><text transform="translate(281 340) rotate(-90)" text-anchor="middle" x="0" y="0">EASTER ROAD</text><text x="500" y="217" text-anchor="middle">ALBION ROAD</text></g>
-        <g transform="translate(345 160)"><circle r="30" fill="#c7343b" stroke="#fff" stroke-width="5"/><text y="9" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="26" fill="#fff">&amp;</text></g>
-        <text x="385" y="108" font-family="Yellowtail,cursive" font-size="36" fill="#fff">The Lea Rig</text>
-        <text x="387" y="134" font-family="Patrick Hand,cursive" font-size="19" fill="#f4d96b">you are here (hungry)</text>
-        <use href="#spk" x="540" y="60" width="26" height="26" style="fill:#f4d96b"/>
-        <use href="#heart" x="60" y="190" width="26" height="26" style="fill:#c7343b"/>
-      </svg>
+    <div class="map" id="map">
+      <a class="mapimg" href="https://www.google.com/maps/place/The+Lea+Rig+Caf%C3%A9+%26+Bakery/@55.9606817,-3.1714931,17z/data=!4m6!3m5!1s0x4887b9d029b47feb:0xde32e53f8742916b!8m2!3d55.9606817!4d-3.1714931!16s%2Fg%2F11zddh2xsz" aria-label="Open The Lea Rig in Google Maps">
+        <img src="img/map-google.jpg" alt="Google Map showing The Lea Rig Café and Bakery at 127 Easter Road, on the corner of Brunswick Road" width="800" height="600">
+        <span class="openmaps"><svg><use href="#pin"/></svg> Open in Google Maps</span>
+      </a>
     </div>
   </div>
 </section>
@@ -527,6 +585,22 @@ footer .hand{font-size:20px;color:var(--butter)}
   if(h&&now>=h[0]&&now<h[1]){msg='Open now · until 3pm';$('status').classList.add('open')}
   else{let i=days.indexOf(today),n=0;if(h&&now<h[0]){msg='Opens today at '+fmt(h[0])}else{do{i=(i+1)%7;n++}while(!hrs[days[i]]);msg='Closed · opens '+(n===1?'tomorrow':days[i])+' '+fmt(hrs[days[i]][0])}}
   $('statusText').textContent=msg;
+  // gallery lightbox
+  const shots=[...document.querySelectorAll('.shot')],lb=$('lightbox');let cur=0;
+  const show=i=>{cur=(i+shots.length)%shots.length;const im=shots[cur].querySelector('img');$('lbImg').src=im.src;$('lbImg').alt=im.alt;$('lbCap').innerHTML=shots[cur].querySelector('figcaption').innerHTML};
+  shots.forEach((b,i)=>b.addEventListener('click',()=>{show(i);try{lb.showModal()}catch(e){lb.setAttribute('open','')}}));
+  $('lbPrev').addEventListener('click',()=>show(cur-1));$('lbNext').addEventListener('click',()=>show(cur+1));
+  $('lbClose').addEventListener('click',()=>lb.close());
+  lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+  lb.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
+
+  // live Google Map where the host allows embeds (e.g. GitHub Pages); the snapshot stays as the fallback
+  if(location.protocol.startsWith('http')&&!/claude|anthropic/.test(location.hostname)){
+    const f=document.createElement('iframe');
+    f.src='https://maps.google.com/maps?q=The%20Lea%20Rig%20Caf%C3%A9%20%26%20Bakery%2C%20127%20Easter%20Road%2C%20Edinburgh%20EH7%205PP&t=m&z=17&hl=en&output=embed';
+    f.title='The Lea Rig on Google Maps';f.loading='lazy';f.referrerPolicy='no-referrer-when-downgrade';f.allowFullscreen=true;
+    $('map').appendChild(f);
+  }
 }
 </script>
 </body>
